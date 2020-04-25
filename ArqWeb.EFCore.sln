@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArqWeb.EFCore", "ArqWeb.EFCore\ArqWeb.EFCore.csproj", "{B247E6FC-6178-4AFA-B5B6-1D7B2FD3A774}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BEntidad", "BEntidad\BEntidad.csproj", "{DFECACDA-7C6D-46A7-BF01-77E145FA4DDA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLogica", "BLogica\BLogica.csproj", "{F6222494-2106-4A3E-A52C-8DCB632CAA2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B247E6FC-6178-4AFA-B5B6-1D7B2FD3A774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B247E6FC-6178-4AFA-B5B6-1D7B2FD3A774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B247E6FC-6178-4AFA-B5B6-1D7B2FD3A774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B247E6FC-6178-4AFA-B5B6-1D7B2FD3A774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFECACDA-7C6D-46A7-BF01-77E145FA4DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFECACDA-7C6D-46A7-BF01-77E145FA4DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFECACDA-7C6D-46A7-BF01-77E145FA4DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFECACDA-7C6D-46A7-BF01-77E145FA4DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6222494-2106-4A3E-A52C-8DCB632CAA2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6222494-2106-4A3E-A52C-8DCB632CAA2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6222494-2106-4A3E-A52C-8DCB632CAA2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6222494-2106-4A3E-A52C-8DCB632CAA2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97D4FC43-15CA-4C88-9886-D46DB7CDCCE8}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,20 @@
+
+<table class="table">
+
+  <thead class="thead-dark">
+    <tr>
+      <th *ngFor="let cab of cabeceras">{{cab}}</th>
+    </tr>
+  </thead>
+  <!--Se abstrae variable donde se almacena resultado json
+  y se define entidades en cada td-->
+  <tbody>
+    <tr *ngFor="let prod of productos_item">
+      <td>{{prod.productId}}</td>
+      <td>{{prod.productName}}</td>
+      <td>{{prod.categoryId}}</td>
+      <td>{{prod.categoryName}}</td>
+    </tr>
+  </tbody>
+
+</table>
