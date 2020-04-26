@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'buscador-producto-nombre',
@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuscadorProductoNombreComponent implements OnInit {
 
-  constructor() { }
+    @Output() clickButton: EventEmitter<any>;
+    @Output() limpiarButton: EventEmitter<any>;
+
+    constructor() {
+        this.clickButton = new EventEmitter();
+        this.limpiarButton = new EventEmitter();
+    }
 
   ngOnInit() {
   }
 
+    filtrarNombre(nombre) {
+
+        this.clickButton.emit(nombre)
+
+        //Para obtener valor (value)
+        //this.clickButton.emit(nombre.value)
+    }
+
+    limpiar(nombre) {
+        this.limpiarButton.emit(nombre);
+    }
 }

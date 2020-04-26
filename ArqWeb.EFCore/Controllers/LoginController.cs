@@ -14,17 +14,5 @@ namespace ArqWeb.EFCore.Controllers
             return View();
             // View de prueba
         }
-
-        [HttpGet]
-        [Route("api/Producto/ListarProductos")]
-        public IEnumerable<Products> ListarProductos()
-        {
-            BLogica.BL.ListProducts _Proc = new BLogica.BL.ListProducts();
-
-            List<Products> ResuList = _Proc.ListarProductos();
-
-            return ResuList;
-
-        }
     }
 }

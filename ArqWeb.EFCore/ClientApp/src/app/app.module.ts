@@ -12,10 +12,13 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { TablaProductosComponent } from './components/tabla-productos/tabla-productos.component';
 
 import { ProductoServices } from './services/Producto.services';
+import { CategoriaService } from './services/categoria.service';
 
 import { HttpModule } from '@angular/http';
 import { BuscadorProductoNombreComponent } from './components/buscador-producto-nombre/buscador-producto-nombre.component';
 import { FiltradoProductoNombreComponent } from './components/filtrado-producto-nombre/filtrado-producto-nombre.component';
+import { BuscadorProductoCategoriaComponent } from './components/buscador-producto-categoria/buscador-producto-categoria.component';
+import { FiltradoProductoCagetoriaComponent } from './components/filtrado-producto-cagetoria/filtrado-producto-cagetoria.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +30,8 @@ import { FiltradoProductoNombreComponent } from './components/filtrado-producto-
         TablaProductosComponent,
         BuscadorProductoNombreComponent,
         FiltradoProductoNombreComponent,
+        BuscadorProductoCategoriaComponent,
+        FiltradoProductoCagetoriaComponent,
     ],
     imports: [
         HttpModule,
@@ -34,12 +39,12 @@ import { FiltradoProductoNombreComponent } from './components/filtrado-producto-
         HttpClientModule,
         FormsModule,
         RouterModule.forRoot([
-            { path: '', component: HomeComponent, pathMatch: 'full' },
+            { path: 'filtradoProductoCategoria', component: FiltradoProductoCagetoriaComponent, pathMatch: 'full' },
             { path: 'filtradoProductoNombre', component: FiltradoProductoNombreComponent },
             { path: 'fetch-data', component: FetchDataComponent },
         ])
     ],
-    providers: [ProductoServices],
+    providers: [ProductoServices, CategoriaService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

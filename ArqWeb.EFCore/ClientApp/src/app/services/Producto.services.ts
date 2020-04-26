@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map'
 export class ProductoServices {
 
     urlBase: string = "";
+    urlFina: string = "";
 
     constructor(private http: Http, @Inject ('BASE_URL') baseUrl : string) {
 
@@ -16,11 +17,19 @@ export class ProductoServices {
     }
 
     public getProducto() {
-        var urlFina = this.urlBase + "api/Producto/ListarProductos"
-        console.log(urlFina);
 
-        return this.http.get(urlFina).map(res => res.json())
+        this.urlFina = this.urlBase + "api/Producto/ListarProductos"
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
 
     }
 
+    public getFiltradoProductoNombre(dNombre) {
+
+        this.urlFina = this.urlBase + "api/Producto/FiltrarProductoPorNombre/" + dNombre
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
 }

@@ -1,0 +1,7 @@
+<label>Ingrese nombre categoría: </label>
+<select>
+  <option value="">--Seleccionar--</option>
+  <option [value]="_cate.categoryId" *ngFor="let _cate of _mcategorias">{{_cate.categoryName}}</option>
+</select>
+<input type="button" value="Buscar" class="btn btn-primary"/>
+<input type="button" value="Buscar" class="btn btn-danger" />
