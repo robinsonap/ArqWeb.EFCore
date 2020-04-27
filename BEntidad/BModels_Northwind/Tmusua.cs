@@ -16,5 +16,6 @@ namespace BEntidad.BModels
         public DateTime FeUsuaCrea { get; set; }
         public string CoUsuaModi { get; set; }
         public DateTime FeUsuaModi { get; set; }
+        public string NoGrup { get; set; }
     }
 }

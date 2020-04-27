@@ -35,5 +35,6 @@ namespace BEntidad.BModels
         public ICollection<EmployeeTerritories> EmployeeTerritories { get; set; }
         public ICollection<Employees> InverseReportsToNavigation { get; set; }
         public ICollection<Orders> Orders { get; set; }
+        public string NombreCompleto { get; set; }
     }
 }

@@ -11,6 +11,7 @@ export class TablaProductosComponent implements OnInit {
 
     // any = var
     @Input() productos_item: any;
+
     cabeceras: string[] = ["Id Producto", "Nombre Producto", "Id Categoria", "Nombre Categoría"]
     
     constructor(private producto: ProductoServices) {

@@ -20,7 +20,7 @@ namespace ArqWeb.EFCore.Controllers
         {
             BLogica.BL.ListProducts _Proc = new BLogica.BL.ListProducts();
 
-            List<Products> ResuList = _Proc.ListarProductos();
+            IEnumerable<Products> ResuList = _Proc.ListarProductos();
 
             return ResuList;
 
@@ -32,7 +32,7 @@ namespace ArqWeb.EFCore.Controllers
         {
             BLogica.BL.ListProducts _Proc = new BLogica.BL.ListProducts();
 
-            List<Products> ResuList = _Proc.FiltrarProductoPorNombre(dNombre);
+            IEnumerable<Products> ResuList = _Proc.FiltrarProductoPorNombre(dNombre);
 
             return ResuList;
 

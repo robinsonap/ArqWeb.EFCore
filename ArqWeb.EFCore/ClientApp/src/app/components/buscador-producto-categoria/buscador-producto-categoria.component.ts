@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CategoriaService } from '../../services/categoria.service';
 
 @Component({
@@ -9,12 +9,28 @@ import { CategoriaService } from '../../services/categoria.service';
 export class BuscadorProductoCategoriaComponent implements OnInit {
 
     _mcategorias: any;
+    @Output() clickBuscar: EventEmitter<any>;
+    @Output() clickLimpiar: EventEmitter<any>;
 
     constructor(private categoriaServicio: CategoriaService) {
-        this.categoriaServicio.getCategoria().subscribe(data => this._mcategorias = data);
+
+        this.clickBuscar = new EventEmitter();
+        this.clickLimpiar = new EventEmitter();
+
     }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+
+        this.categoriaServicio.getCategoria().subscribe(data => this._mcategorias = data);
+
+    }
+
+    public buscar(categoria) {
+        this.clickBuscar.emit(categoria);
+    }
+
+    public limpiar(categoria) {
+        this.clickLimpiar.emit(categoria);
+    }
 
 }

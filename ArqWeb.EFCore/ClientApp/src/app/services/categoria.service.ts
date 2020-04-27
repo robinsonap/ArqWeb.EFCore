@@ -8,6 +8,7 @@ export class CategoriaService {
     urlBase: string;
     urlFina: string;
 
+    // Para capturar y obtener el dominio
     constructor(private http: Http, @Inject('BASE_URL') baseUrl: string) {
         this.urlBase = baseUrl;
     }

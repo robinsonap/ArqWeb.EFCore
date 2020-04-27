@@ -1,2 +1,6 @@
-<buscador-producto-categoria></buscador-producto-categoria>
-<tabla-productos></tabla-productos>
+<buscador-producto-categoria (clickBuscar)="buscar($event)"
+                             (clickLimpiar)="limpiar($event)">
+
+</buscador-producto-categoria>
+
+<tabla-productos [productos_item]="_productos"></tabla-productos>

@@ -1,0 +1,5 @@
+<label>Ingrese tipo usuario</label>
+<select #tipo (change)="filtrar(tipo)">
+  <option>--Seleccion--</option>
+  <option [value]="tipoUsua.co_grup" *ngFor="let tipoUsua of tipoUsuarios">{{tipoUsua.no_grup}}</option>
+</select>

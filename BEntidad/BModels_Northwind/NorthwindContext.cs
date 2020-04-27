@@ -30,6 +30,8 @@ namespace BEntidad.BModels
         public virtual DbSet<Territories> Territories { get; set; }
         public virtual DbSet<Tmusua> Tmusua { get; set; }
 
+        public virtual DbSet<Tmgrup_usua> Tmgrup_usua { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -519,6 +521,22 @@ namespace BEntidad.BModels
                     .IsRequired()
                     .HasColumnName("ST_ACTI")
                     .HasMaxLength(3)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Tmgrup_usua>(entity =>
+            {
+                entity.HasKey(e => e.Co_grup);
+
+                entity.Property(e => e.Co_grup)
+                    .HasColumnName("CO_GRUP")
+                    .HasMaxLength(8)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.No_grup)
+                    .HasColumnName("NO_GRUP")
+                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
         }

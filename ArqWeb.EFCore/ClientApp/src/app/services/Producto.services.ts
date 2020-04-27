@@ -9,9 +9,9 @@ export class ProductoServices {
     urlBase: string = "";
     urlFina: string = "";
 
+    // Para capturar y obtener el dominio
     constructor(private http: Http, @Inject ('BASE_URL') baseUrl : string) {
 
-        //urlBase tiene el nombre del dominio 
         this.urlBase = baseUrl;
 
     }
@@ -28,6 +28,14 @@ export class ProductoServices {
     public getFiltradoProductoNombre(dNombre) {
 
         this.urlFina = this.urlBase + "api/Producto/FiltrarProductoPorNombre/" + dNombre
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
+    public getFiltradoProductoPorCategoria(idCategoria) {
+
+        this.urlFina = this.urlBase + "api/Categoria/FiltrarCategoriaPorNombre/" + idCategoria
         console.log(this.urlFina);
 
         return this.http.get(this.urlFina).map(res => res.json())

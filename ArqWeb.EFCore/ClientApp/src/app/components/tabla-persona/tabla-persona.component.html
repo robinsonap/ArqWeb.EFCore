@@ -1,0 +1,22 @@
+
+<table class="table">
+
+  <thead class="thead-dark">
+    <tr>
+      <th *ngFor="let cabe of cabeceras">{{cabe}}</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let emple of empleados">
+      <td>{{emple.employeeId}}</td>
+      <td>{{emple.nombreCompleto}}</td>
+      <td>{{emple.homePhone}}</td>
+      <td>{{emple.birthDate}}</td>
+      <td>{{emple.city}}</td>
+    </tr>
+
+  </tbody>
+</table>

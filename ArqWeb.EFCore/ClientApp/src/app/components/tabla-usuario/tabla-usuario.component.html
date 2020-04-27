@@ -1,0 +1,21 @@
+
+<table class="table">
+
+  <thead class="thead-dark">
+    <tr>
+      <th *ngFor="let cabe of cabeceras">{{cabe}}</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let _usua of usuarios">
+      <td>{{_usua.coUsua}}</td>
+      <td>{{_usua.noUsua}}</td>
+      <td>{{_usua.coGrup}}</td>
+      <td>{{_usua.noGrup}}</td>
+    </tr>
+
+  </tbody>
+</table>
