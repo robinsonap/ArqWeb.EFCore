@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+//Agregamos para poder trabajar con formularios
+import { ReactiveFormsModule } from '@angular/forms'
+
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -27,6 +30,8 @@ import { FiltradoPersonaNombreCompletoComponent } from './components/filtrado-pe
 import { BuscadorUsuarioTipoUsuarioComponent } from './components/buscador-usuario-tipo-usuario/buscador-usuario-tipo-usuario.component';
 import { FiltradoUsuarioTipoUsuarioComponent } from './components/filtrado-usuario-tipo-usuario/filtrado-usuario-tipo-usuario.component';
 import { TablaUsuarioComponent } from './components/tabla-usuario/tabla-usuario.component';
+import { MantenimientoPersonaComponent } from './components/mantenimiento-persona/mantenimiento-persona.component';
+import { PersonaFormMantenimientoComponent } from './components/persona-form-mantenimiento/persona-form-mantenimiento.component';
 
 @NgModule({
     declarations: [
@@ -46,17 +51,22 @@ import { TablaUsuarioComponent } from './components/tabla-usuario/tabla-usuario.
         BuscadorUsuarioTipoUsuarioComponent,
         FiltradoUsuarioTipoUsuarioComponent,
         TablaUsuarioComponent,
+        MantenimientoPersonaComponent,
+        PersonaFormMantenimientoComponent,
     ],
     imports: [
         HttpModule,
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
         FormsModule,
+        ReactiveFormsModule,
         RouterModule.forRoot([
             { path: 'filtradoProductoCategoria', component: FiltradoProductoCagetoriaComponent, pathMatch: 'full' },
             { path: 'filtradoProductoNombre', component: FiltradoProductoNombreComponent },
             { path: 'filtradoPersonaNombreCompleto', component: FiltradoPersonaNombreCompletoComponent },
             { path: 'filtradoUsuarioPorTipo', component: FiltradoUsuarioTipoUsuarioComponent },
+            { path: 'mantenimiento-persona', component: MantenimientoPersonaComponent },
+            { path: 'mantenimiento-persona/:id', component: PersonaFormMantenimientoComponent },
         ])
     ],
     providers: [ProductoServices, CategoriaService, PersonaService, UsuarioService],

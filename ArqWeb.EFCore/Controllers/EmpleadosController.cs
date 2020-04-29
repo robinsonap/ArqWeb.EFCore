@@ -12,13 +12,13 @@ namespace ArqWeb.EFCore.Controllers
 
         [HttpGet]
         [Route("api/Empleados/ListarEmpleados")]
-        public IEnumerable<Employees> ListarEmpleados()
+        public IEnumerable<_Employees> ListarEmpleados()
         {
             try
             {
                 BLogica.BL.Empleados _Proc = new BLogica.BL.Empleados();
 
-                IEnumerable<Employees> Listado = _Proc.ListarEmpleados();
+                IEnumerable<_Employees> Listado = _Proc.ListarEmpleados();
 
                 return Listado;
             }
@@ -30,13 +30,13 @@ namespace ArqWeb.EFCore.Controllers
 
         [HttpGet]
         [Route("api/Empleados/ListarEmpleados/{nombreCompleto?}")]
-        public IEnumerable<Employees> FiltrarEmpleado(string nombreCompleto = "")
+        public IEnumerable<_Employees> FiltrarEmpleado(string nombreCompleto = "")
         {
             try
             {
                 BLogica.BL.Empleados _Proc = new BLogica.BL.Empleados();
 
-                IEnumerable<Employees> Listado = _Proc.FiltrarEmpleadoPorNombreCompleto(nombreCompleto);
+                IEnumerable<_Employees> Listado = _Proc.FiltrarEmpleadoPorNombreCompleto(nombreCompleto);
 
                 return Listado;
             }
@@ -45,6 +45,19 @@ namespace ArqWeb.EFCore.Controllers
 
                 throw;
             }
+        }
+
+        [HttpPost]
+        [Route("api/Empleados/guardarEmpleado")]
+        public int guardarEmpleado([FromBody] Employees m)
+        {
+            int sINSERT = 0;
+
+            BLogica.BL.Empleados _Proc = new BLogica.BL.Empleados();
+
+            sINSERT = _Proc.registrarEmpleado(m);
+
+            return sINSERT;
         }
     }
 }

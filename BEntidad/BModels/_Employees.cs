@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace BEntidad.BModels
 {
-    public partial class Employees
+    public class _Employees
     {
-        public Employees()
-        {
-            EmployeeTerritories = new HashSet<EmployeeTerritories>();
-            InverseReportsToNavigation = new HashSet<Employees>();
-            Orders = new HashSet<Orders>();
-        }
-
         public int EmployeeId { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -30,11 +24,6 @@ namespace BEntidad.BModels
         public string Notes { get; set; }
         public int? ReportsTo { get; set; }
         public string PhotoPath { get; set; }
-
-        public Employees ReportsToNavigation { get; set; }
-        public ICollection<EmployeeTerritories> EmployeeTerritories { get; set; }
-        public ICollection<Employees> InverseReportsToNavigation { get; set; }
-        public ICollection<Orders> Orders { get; set; }
-
+        public string NombreCompleto { get; set; }
     }
 }

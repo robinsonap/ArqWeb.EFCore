@@ -31,4 +31,12 @@ export class PersonaService {
 
     }
 
+    public agregarPersona(sEmpleado) {
+
+        this.urlFina = this.urlBase + "api/Empleados/guardarEmpleado"
+        console.log(this.urlFina);
+
+        return this.http.post(this.urlFina, sEmpleado).map(res => res.json())
+    }
+
 }
