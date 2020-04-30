@@ -39,4 +39,20 @@ export class PersonaService {
         return this.http.post(this.urlFina, sEmpleado).map(res => res.json())
     }
 
+    public recuperarPersona(idPersona) {
+
+        this.urlFina = this.urlBase + "api/Empleados/recuperarEmpleado/" + idPersona
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
+    public eliminarPersona(idPersona) {
+
+        this.urlFina = this.urlBase + "api/Empleados/eliminarEmpleado/" + idPersona
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
 }

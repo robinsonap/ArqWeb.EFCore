@@ -74,19 +74,78 @@ namespace BLogica.BL
             {
                 try
                 {
-                    _BD.Add(m);
-                    _BD.SaveChanges();
+                    if (m.EmployeeId == 0)
+                    {
+                        _BD.Add(m);
+                        _BD.SaveChanges();
 
-                    sINSERT = 1;
+                        sINSERT = 1;
+                    }
+                    else
+                    {
+                        //Recuperar toda la fila
+                        Employees sEmpleados = _BD.Employees.Where(p => p.EmployeeId == m.EmployeeId).First();
+                        sEmpleados.LastName = m.LastName;
+                        sEmpleados.FirstName = m.FirstName;
+                        sEmpleados.HomePhone = m.HomePhone;
+                        sEmpleados.City = m.City;
+                        sEmpleados.BirthDate = m.BirthDate;
+                        _BD.SaveChanges();
 
-                    return sINSERT;
+                        sINSERT = 1;
+                    }
                 }
                 catch (Exception ex)
                 {
                     sINSERT = 0;
 
-                    return sINSERT;
                 }
+
+                return sINSERT;
+            }
+        }
+
+        public _Employees sRecuperarEmpleado(int idPersona)
+        {
+            using (NorthwindContext _BD = new NorthwindContext())
+            {
+                _Employees DatoEmpleado = (from t1 in _BD.Employees
+                                           where t1.EmployeeId == idPersona
+                                           select new _Employees
+                                           {
+                                               EmployeeId = t1.EmployeeId,
+                                               LastName = t1.LastName,
+                                               FirstName = t1.FirstName,
+                                               HomePhone = t1.HomePhone,
+                                               City = t1.City,
+                                               fechaCadena = t1.BirthDate != null ? ((DateTime)t1.BirthDate).ToString("yyyy-MM-dd") : ""
+                                           }).First();
+
+                return DatoEmpleado;
+            }
+        }
+
+        public int eliminarEmpleado (int idPersona)
+        {
+            int sDELETE = 0;
+
+            using (NorthwindContext _BD = new NorthwindContext())
+            {
+                try
+                {
+                    Employees EliminaEmpleado = _BD.Employees.Where(p => p.EmployeeId == idPersona).First();
+                    EliminaEmpleado.EmployeeId = idPersona;
+                    _BD.Employees.Remove(EliminaEmpleado);
+                    _BD.SaveChanges();
+
+                    sDELETE = 1;
+                }
+                catch (Exception)
+                {
+                    sDELETE = 0;
+                }
+
+                return sDELETE;
             }
         }
     }

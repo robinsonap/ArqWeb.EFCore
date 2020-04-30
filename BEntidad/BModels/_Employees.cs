@@ -25,5 +25,7 @@ namespace BEntidad.BModels
         public int? ReportsTo { get; set; }
         public string PhotoPath { get; set; }
         public string NombreCompleto { get; set; }
+        //año - mes - dia
+        public string fechaCadena { get; set; }
     }
 }

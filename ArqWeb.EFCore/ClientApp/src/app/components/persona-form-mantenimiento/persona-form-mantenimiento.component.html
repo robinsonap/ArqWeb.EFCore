@@ -1,3 +1,5 @@
+<h1>{{titulo}}</h1>
+
 <div class="row">
   <div class="col-md-12">
     <form [formGroup]="empleado" (ngSubmit)="guardarDatos()">
@@ -9,21 +11,53 @@
       <div class="form-group">
         <label>Apellidos</label>
         <input type="text" class="form-control" formControlName="LastName" />
+        <div style="color:red" *ngIf="empleado.controls['LastName'].errors?.required">
+          Debe ingresar los apellidos.
+        </div>
+        <div style="color:red" *ngIf="empleado.controls['LastName'].errors?.maxlength">
+          Superó la longitud máxima.
+        </div>
       </div>
 
       <div class="form-group">
         <label>Nombres</label>
         <input type="text" class="form-control" formControlName="FirstName" />
+        <div style="color:red" *ngIf="empleado.controls['FirstName'].errors?.required">
+          Debe ingresar los nombres.
+        </div>
+        <div style="color:red" *ngIf="empleado.controls['FirstName'].errors?.maxlength">
+          Superó la longitud máxima.
+        </div>
       </div>
 
       <div class="form-group">
         <label>Nro. Teléfono</label>
-        <input type="number" class="form-control" formControlName="HomePhone" />
+        <input type="text" class="form-control" formControlName="HomePhone" />
+        <div style="color:red" *ngIf="empleado.controls['HomePhone'].errors?.required">
+          Debe ingresar Nro. de celular.
+        </div>
+        <div style="color:red" *ngIf="empleado.controls['HomePhone'].errors?.maxlength">
+          Superó la longitud máxima.
+        </div>
       </div>
 
       <div class="form-group">
-        <label>Dirreción</label>
-        <input type="text" class="form-control" formControlName="Address" />
+        <label>Ciudad</label>
+        <input type="text" class="form-control" formControlName="City" />
+        <div style="color:red" *ngIf="empleado.controls['City'].errors?.required">
+          Debe ingresar la ciudad.
+        </div>
+        <div style="color:red" *ngIf="empleado.controls['City'].errors?.maxlength">
+          Superó la longitud máxima.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Fecha Nacimiento</label>
+        <input type="date" class="form-control" formControlName="BirthDate" />
+        <div style="color:red" *ngIf="empleado.controls['BirthDate'].errors?.required">
+          Debe ingresar la fecha de nacimiento.
+        </div>
       </div>
 
       <div>
@@ -33,6 +67,8 @@
     </form>
   </div>
 </div>
+
+<hr />
 
 <div style="margin:1em" *ngIf="empleado.valid==false">
    <div class="alert alert-danger">El formulario no es válido, por favor verificar los datos.</div>

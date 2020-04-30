@@ -19,6 +19,16 @@ export class TablaPersonaComponent implements OnInit {
 
     ngOnInit() {
         this.personaService.getPersonas().subscribe(data => this.empleados = data);
-  }
+    }
+
+    eliminar(idPersona) {
+        if (confirm("¿Desea eliminar el registro seleccionado?") == true) {
+            //alert(idPersona)
+            this.personaService.eliminarPersona(idPersona).subscribe(data => {
+                this.personaService.getPersonas().subscribe(data => this.empleados = data);
+            });
+        }
+        
+    }
 
 }

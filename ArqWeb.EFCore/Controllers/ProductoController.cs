@@ -18,24 +18,76 @@ namespace ArqWeb.EFCore.Controllers
         [Route("api/Producto/ListarProductos")]
         public IEnumerable<Products> ListarProductos()
         {
-            BLogica.BL.ListProducts _Proc = new BLogica.BL.ListProducts();
+            try
+            {
+                BLogica.BL.Producto _Proc = new BLogica.BL.Producto();
 
-            IEnumerable<Products> ResuList = _Proc.ListarProductos();
+                IEnumerable<Products> ResuList = _Proc.ListarProductos();
 
-            return ResuList;
+                return ResuList;
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
         }
 
         [HttpGet]
         [Route("api/Producto/FiltrarProductoPorNombre/{dNombre}")]
         public IEnumerable<Products> FiltrarProductoPorNombre(string dNombre)
         {
-            BLogica.BL.ListProducts _Proc = new BLogica.BL.ListProducts();
+            try
+            {
+                BLogica.BL.Producto _Proc = new BLogica.BL.Producto();
 
-            IEnumerable<Products> ResuList = _Proc.FiltrarProductoPorNombre(dNombre);
+                IEnumerable<Products> ResuList = _Proc.FiltrarProductoPorNombre(dNombre);
 
-            return ResuList;
+                return ResuList;
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Producto/ListarProveedor")]
+        public IEnumerable<_Suppliers> ListarProveedor()
+        {
+            try
+            {
+                BLogica.BL.Producto _Proc = new BLogica.BL.Producto();
+
+                IEnumerable<_Suppliers> ListadoProveedores = _Proc.ListarProveedor();
+
+                return ListadoProveedores;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Producto/obtenerProductoPorId/{idProducto}")]
+        public Products obtenerProductoPorId (int idProducto)
+        {
+            try
+            {
+                BLogica.BL.Producto _Proc = new BLogica.BL.Producto();
+
+                Products sProducto = _Proc.obtenerProductoPorId(idProducto);
+
+                return sProducto;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

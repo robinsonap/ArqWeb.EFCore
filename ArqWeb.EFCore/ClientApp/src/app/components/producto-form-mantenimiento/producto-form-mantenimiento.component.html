@@ -1,0 +1,78 @@
+
+<h1>{{titulo}}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="producto" (ngSubmit)="guardarDatos()">
+
+      <div class="form-group">
+        <label>Id. Producto</label>
+        <input type="text" class="form-control" formControlName="ProductId" readonly />
+      </div>
+
+      <div class="form-group">
+        <label>Nombre del producto</label>
+        <input type="text" class="form-control" formControlName="ProductName" />
+        <div style="color:red" *ngIf="producto.controls['ProductName'].errors?.required">
+          El nombre del producto es obligatorio.
+        </div>
+        <div style="color:red" *ngIf="producto.controls['ProductName'].errors?.maxlength">
+          Superó la longitud máxima
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Precio</label>
+        <input type="number" min="0" class="form-control" formControlName="UnitPrice" />
+        <div style="color:red" *ngIf="producto.controls['UnitPrice'].errors?.required">
+          El precio del producto es obligatorio.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Proveedor</label>
+        <select formControlName="SupplierId" class="form-control">
+          <option>--Seleccione--</option>
+          <option [value]="prov.supplierId" *ngFor="let prov of proveedor">{{prov.companyName}}</option>
+        </select>
+        <div style="color:red" *ngIf="producto.controls['SupplierId'].errors?.required">
+          Debe seleccionar un proveedor.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Categoria</label>
+        <select formControlName="CategoryId" class="form-control">
+          <option>--Seleccione--</option>
+          <option [value]="cate.categoryId" *ngFor="let cate of categoria">{{cate.categoryName}}</option>
+        </select>
+        <div style="color:red" *ngIf="producto.controls['CategoryId'].errors?.required">
+          Debe seleccionar una categoría.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Stock</label>
+        <input type="number" min="0" class="form-control" formControlName="UnitsInStock" />
+        <div style="color:red" *ngIf="producto.controls['UnitsInStock'].errors?.required">
+          El stock no puede ser vacío.
+        </div>
+      </div>
+
+      <div>
+        <input [disabled]="!producto.valid" type="submit" value="Enviar" class="btn btn-primary" />
+        <input type="button" [routerLink]="['/mantenimiento-producto']" value="Regresar" class="btn btn-danger" />
+      </div>
+
+    </form>
+
+    <hr />
+
+    <div *ngIf="producto.valid==false">
+      <div class="alert alert-danger">
+        El fomulario no es válido.
+      </div>
+    </div>
+
+  </div>
+</div>

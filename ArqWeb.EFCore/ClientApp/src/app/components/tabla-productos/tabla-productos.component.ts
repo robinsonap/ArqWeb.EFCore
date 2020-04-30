@@ -11,6 +11,7 @@ export class TablaProductosComponent implements OnInit {
 
     // any = var
     @Input() productos_item: any;
+    @Input() isMantenimiento = false;
 
     cabeceras: string[] = ["Id Producto", "Nombre Producto", "Id Categoria", "Nombre Categoría"]
     

@@ -18,8 +18,8 @@
       <td>{{emple.birthDate}}</td>
       <td>{{emple.city}}</td>
       <td *ngIf="isMantenimiento==true">
-        <i class="glyphicon glyphicon-edit btn btn-primary"></i>
-        <i class="glyphicon glyphicon-trash btn btn-danger"></i>
+        <i [routerLink]="['/persona-form-mantenimiento', emple.employeeId]" class="glyphicon glyphicon-edit btn btn-primary"></i>
+        <i class="glyphicon glyphicon-trash btn btn-danger" (click)="eliminar(emple.employeeId)"></i>
       </td>
     </tr>
 

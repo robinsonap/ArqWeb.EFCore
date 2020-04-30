@@ -40,4 +40,18 @@ export class ProductoServices {
 
         return this.http.get(this.urlFina).map(res => res.json())
     }
+
+    public obtenerProductoPorId(idProducto) {
+        this.urlFina = this.urlBase + "api/Producto/obtenerProductoPorId/" + idProducto
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
+    public ListarProveedor() {
+        this.urlFina = this.urlBase + "api/Producto/ListarProveedor"
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
 }

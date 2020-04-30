@@ -51,13 +51,61 @@ namespace ArqWeb.EFCore.Controllers
         [Route("api/Empleados/guardarEmpleado")]
         public int guardarEmpleado([FromBody] Employees m)
         {
-            int sINSERT = 0;
+            try
+            {
+                int sINSERT = 0;
 
-            BLogica.BL.Empleados _Proc = new BLogica.BL.Empleados();
+                BLogica.BL.Empleados _Proc = new BLogica.BL.Empleados();
 
-            sINSERT = _Proc.registrarEmpleado(m);
+                sINSERT = _Proc.registrarEmpleado(m);
 
-            return sINSERT;
+                return sINSERT;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Empleados/recuperarEmpleado/{idPersona}")]
+        public _Employees recuperarEmpleado (int idPersona)
+        {
+            try
+            {
+                BLogica.BL.Empleados _Proc = new BLogica.BL.Empleados();
+
+                _Employees DatoEmpleado = _Proc.sRecuperarEmpleado(idPersona);
+
+                return DatoEmpleado;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Empleados/eliminarEmpleado/{idPersona}")]
+        public int eliminarEmpleado (int idPersona)
+        {
+            try
+            {
+                int sDELETE = 0;
+                BLogica.BL.Empleados _Proc = new BLogica.BL.Empleados();
+
+                sDELETE = _Proc.eliminarEmpleado(idPersona);
+
+                return sDELETE;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
