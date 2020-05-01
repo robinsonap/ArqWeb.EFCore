@@ -81,5 +81,93 @@ namespace BLogica.BL
                 return sProducto;
             }
         }
+
+        public int registrarProducto (Products m)
+        {
+            int sINSERT = 0;
+
+            using (NorthwindContext _BD = new NorthwindContext())
+            {
+                try
+                {
+                    if (m.ProductId == 0)
+                    {
+                        _BD.Add(m);
+                        _BD.SaveChanges();
+
+                        sINSERT = 1;
+                    }
+                    else
+                    {
+                        Products sProductos = _BD.Products.Where(p => p.ProductId == m.ProductId).First();
+                        sProductos.ProductId = m.ProductId;
+                        sProductos.ProductName = m.ProductName;
+                        sProductos.UnitPrice = m.UnitPrice;
+                        sProductos.SupplierId = m.SupplierId;
+                        sProductos.CategoryId = m.CategoryId;
+                        sProductos.UnitsInStock = m.UnitsInStock;
+                        _BD.SaveChanges();
+
+                        sINSERT = 1;
+                    }
+                }
+                catch (Exception)
+                {
+                    sINSERT = 0;
+                }
+
+                return sINSERT;
+            }
+        }
+
+        public int eliminarProducto (int idProducto)
+        {
+            int sDELETE = 0;
+
+            using (NorthwindContext _BD = new NorthwindContext())
+            {
+                try
+                {
+                    Products EliminaProducto = _BD.Products.Where(p => p.ProductId == idProducto).First();
+                    EliminaProducto.ProductId = idProducto;
+                    _BD.Products.Remove(EliminaProducto);
+                    _BD.SaveChanges();
+
+                    sDELETE = 1;
+                }
+                catch (Exception)
+                {
+                    sDELETE = 0;
+                }
+
+                return sDELETE;
+            }
+        }
+
+        public int validarNombre(int idProducto, string nProducto)
+        {
+            int sVALIDA = 0;
+
+            using (NorthwindContext _BD = new NorthwindContext())
+            {
+                try
+                {
+                    if ( idProducto == 0)
+                    {
+                        sVALIDA = _BD.Products.Where(p => p.ProductName.ToLower() == nProducto.ToLower()).Count();
+                    }
+                    else
+                    {
+                        sVALIDA = _BD.Products.Where(p => p.ProductName.ToLower() == nProducto.ToLower() && p.ProductId != idProducto).Count();
+                    }
+                }
+                catch (Exception)
+                {
+                    sVALIDA = 0;
+                }
+
+                return sVALIDA;
+            }
+        }
     }
 }

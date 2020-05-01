@@ -1,0 +1,85 @@
+
+<h1>{{titulo}}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="usuario" (ngSubmit)="guardarDatos()">
+      <div class="form-group">
+        <label>Cod. Usuario</label>
+        <input type="text" class="form-control" formControlName="CoUsua" />
+        <div style="color:red" *ngIf="usuario.controls['CoUsua'].errors?.required">
+          El código del usuario es obligatorio.
+        </div>
+        <div style="color:red" *ngIf="usuario.controls['CoUsua'].errors?.maxlength">
+          Superó la longitud máxima
+        </div>
+        <div style="color:red" *ngIf="usuario.controls['CoUsua'].errors?.yaExiste">
+          El código de usuario ya existe, por favor ingrese otro.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Nombre de Usuario</label>
+        <input type="text" class="form-control" formControlName="NoUsua" />
+        <div style="color:red" *ngIf="usuario.controls['NoUsua'].errors?.required">
+          El nombre del producto es obligatorio.
+        </div>
+        <div style="color:red" *ngIf="usuario.controls['NoUsua'].errors?.maxlength">
+          Superó
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="ver==true">
+        <label>Clave</label>
+        <input type="password" class="form-control" formControlName="NoClav" />
+        <div style="color:red" *ngIf="usuario.controls['NoClav'].errors?.required">
+          Ingresar contraseña.
+        </div>
+        <div style="color:red" *ngIf="usuario.controls['NoClav'].errors?.maxlength">
+          Superó el máximo de caracteres permitido.
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="ver==true">
+        <label>Ingresar nuevamente la contraseña</label>
+        <input type="password" class="form-control" formControlName="NoClav2" />
+        <div style="color:red" *ngIf="usuario.controls['NoClav2'].errors?.required">
+          Las contraseñas no son iguales, por favor verificar.
+        </div>
+        <div style="color:red" *ngIf="usuario.controls['NoClav2'].errors?.maxlength">
+          Superó el máximo de caracteres permitido.
+        </div>
+        <div style="color:red" *ngIf="usuario.controls['NoClav2'].errors?.noIguales">
+          Las contraseñas no son iguales, por favor verificar.
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <label>Grupo de Usuario</label>
+        <select formControlName="CoGrup" class="form-control">
+          <option>--Seleccione--</option>
+          <option [value]="grUsua.co_grup" *ngFor="let grUsua of grupoUsuario">{{grUsua.no_grup}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Correo del Usuario</label>
+        <input type="text" class="form-control" formControlName="DeDireMail" />
+        <div style="color:red" *ngIf="usuario.controls['DeDireMail'].errors?.required">
+          Ingresar el correo del usuario.
+        </div>
+        <div style="color:red" *ngIf="usuario.controls['DeDireMail'].errors?.maxlength">
+          Superó el máximo de caracteres permitido.
+        </div>
+        <div style="color:red" *ngIf="usuario.controls['DeDireMail'].errors?.pattern">
+          Ingresar un correo electrónico válido.
+        </div>
+      </div>
+
+      <div>
+        <input [disabled]="!usuario.valid" type="submit" value="Guardar" class="btn btn-primary" />
+        <button [routerLink]="['/mantenimiento-usuario']" class="btn btn-danger">Regresar</button>
+      </div>
+    </form>
+  </div>
+</div>

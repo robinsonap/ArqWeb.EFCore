@@ -89,5 +89,67 @@ namespace ArqWeb.EFCore.Controllers
                 throw;
             }
         }
+
+        [HttpPost]
+        [Route("api/Producto/registrarProducto")]
+        public int registrarProducto([FromBody] Products m)
+        {
+            try
+            {
+                int sINSERT = 0;
+
+                BLogica.BL.Producto _Proc = new BLogica.BL.Producto();
+
+                sINSERT = _Proc.registrarProducto(m);
+
+                return sINSERT;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/Producto/eliminarProducto/{idProducto}")]
+        public int eliminarProducto (int idProducto)
+        {
+            try
+            {
+                int sDELETE = 0;
+
+                BLogica.BL.Producto _Proc = new BLogica.BL.Producto();
+
+                sDELETE = _Proc.eliminarProducto(idProducto);
+
+                return sDELETE;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
+
+        [HttpGet]
+        [Route("api/Producto/validarNombre/{idProducto}/{nProducto}")]
+        public int validarNombre (int idProducto, string nProducto)
+        {
+            try
+            {
+                BLogica.BL.Producto _Proc = new BLogica.BL.Producto();
+                int sVALIDA = 0;
+
+                sVALIDA = _Proc.validarNombre(idProducto, nProducto);
+
+                return sVALIDA;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

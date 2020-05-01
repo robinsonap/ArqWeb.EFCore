@@ -57,6 +57,9 @@
         <div style="color:red" *ngIf="producto.controls['UnitsInStock'].errors?.required">
           El stock no puede ser vacío.
         </div>
+        <div style="color:red" *ngIf="producto.controls['UnitsInStock'].errors?.puntoDecimal">
+          No se permite ingresar valor decimal.
+        </div>
       </div>
 
       <div>

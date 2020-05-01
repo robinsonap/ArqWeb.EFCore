@@ -12,6 +12,7 @@ export class TablaProductosComponent implements OnInit {
     // any = var
     @Input() productos_item: any;
     @Input() isMantenimiento = false;
+    p: number=1;
 
     cabeceras: string[] = ["Id Producto", "Nombre Producto", "Id Categoria", "Nombre Categoría"]
     
@@ -29,6 +30,19 @@ export class TablaProductosComponent implements OnInit {
         );
 
         //console.log(resu);
-  }
+    }
+
+    eliminarProducto(idProducto) {
+        if (confirm("¿Desea eliminar el registro?") == true) {
+            //Consumimos servicio para eliminar
+            this.producto.eliminarProducto(idProducto).subscribe(data => {
+                //Refrescamos tabla producto
+                this.producto.getProducto().subscribe(
+                    data => this.productos_item = data
+                );
+            });
+        }
+        
+    }
 
 }

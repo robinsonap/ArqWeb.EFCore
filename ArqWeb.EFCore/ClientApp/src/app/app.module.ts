@@ -35,6 +35,10 @@ import { PersonaFormMantenimientoComponent } from './components/persona-form-man
 import { MantenimientoProductoComponent } from './components/mantenimiento-producto/mantenimiento-producto.component';
 import { ProductoFormMantenimientoComponent } from './components/producto-form-mantenimiento/producto-form-mantenimiento.component';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MantenimientoUsuarioComponent } from './components/mantenimiento-usuario/mantenimiento-usuario.component';
+import { UsuarioFormMantenimientoComponent } from './components/usuario-form-mantenimiento/usuario-form-mantenimiento.component'
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -57,6 +61,8 @@ import { ProductoFormMantenimientoComponent } from './components/producto-form-m
         PersonaFormMantenimientoComponent,
         MantenimientoProductoComponent,
         ProductoFormMantenimientoComponent,
+        MantenimientoUsuarioComponent,
+        UsuarioFormMantenimientoComponent,
     ],
     imports: [
         HttpModule,
@@ -64,6 +70,7 @@ import { ProductoFormMantenimientoComponent } from './components/producto-form-m
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
+        NgxPaginationModule,
         RouterModule.forRoot([
             { path: 'filtradoProductoCategoria', component: FiltradoProductoCagetoriaComponent, pathMatch: 'full' },
             { path: 'filtradoProductoNombre', component: FiltradoProductoNombreComponent },
@@ -73,6 +80,8 @@ import { ProductoFormMantenimientoComponent } from './components/producto-form-m
             { path: 'persona-form-mantenimiento/:id', component: PersonaFormMantenimientoComponent },
             { path: 'mantenimiento-producto', component: MantenimientoProductoComponent },
             { path: 'producto-form-mantenimiento/:id', component: ProductoFormMantenimientoComponent },
+            { path: 'mantenimiento-usuario', component: MantenimientoUsuarioComponent },
+            { path: 'usuario-form-mantenimiento/:id', component: UsuarioFormMantenimientoComponent },
         ])
     ],
     providers: [ProductoServices, CategoriaService, PersonaService, UsuarioService],

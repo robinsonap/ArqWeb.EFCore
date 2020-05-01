@@ -42,4 +42,36 @@ export class UsuarioService {
 
     }
 
+    public getBuscarUsuarioPorId(idUsuario) {
+        this.urlFina = this.urlBase + "api/Usuario/BuscarUsuarioPorId/" + idUsuario
+        console.log(this.urlFina);
+
+        //map conviente a Json
+        return this.http.get(this.urlFina).map(res => res.json())
+
+    }
+
+    public registrarUsuario(sUsuario) {
+
+        this.urlFina = this.urlBase + "api/Usuario/registrarUsuario"
+        console.log(this.urlFina);
+
+        return this.http.post(this.urlFina, sUsuario).map(res => res.json())
+    }
+
+    public eliminarUsuario(idPersona) {
+
+        this.urlFina = this.urlBase + "api/Usuario/eliminarUsuario/" + idPersona
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
+    public validarCodUsuario(codUsuario) {
+        this.urlFina = this.urlBase + "api/Usuario/validarCodUsuario/" + codUsuario
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
 }

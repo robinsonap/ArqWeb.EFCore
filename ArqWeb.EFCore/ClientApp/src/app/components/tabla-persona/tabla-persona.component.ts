@@ -10,6 +10,7 @@ export class TablaPersonaComponent implements OnInit {
 
     @Input() empleados: any;
     @Input() isMantenimiento = false;
+    p: number = 1;
 
     cabeceras: string[]= ["Id Empleado", "Nombres y Apellidos", "Teléfono", "Año de nacimiento", "Ciudad"];
 

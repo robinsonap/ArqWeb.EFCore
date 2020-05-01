@@ -54,4 +54,25 @@ export class ProductoServices {
 
         return this.http.get(this.urlFina).map(res => res.json())
     }
+
+    public eliminarProducto(idProducto) {
+        this.urlFina = this.urlBase + "api/Producto/eliminarProducto/" + idProducto
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
+    public registrarProducto(ProductoFormEntity) {
+        this.urlFina = this.urlBase + "api/Producto/registrarProducto"
+        console.log(this.urlFina);
+
+        return this.http.post(this.urlFina, ProductoFormEntity).map(res => res.json())
+    }
+
+    public validarNombre(idProducto, nProducto) {
+        this.urlFina = this.urlBase + "api/Producto/validarNombre/" + idProducto + "/" + nProducto
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
 }

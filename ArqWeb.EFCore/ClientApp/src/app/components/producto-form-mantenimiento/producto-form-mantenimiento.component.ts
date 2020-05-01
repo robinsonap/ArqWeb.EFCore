@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validator, Validators } from '@angular/forms'
 import { ProductoServices } from '../../services/Producto.services'
 import { CategoriaService } from '../../services/categoria.service'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
+//  import { resolve, reject } from 'q';
 
 @Component({
   selector: 'producto-form-mantenimiento',
@@ -17,13 +18,16 @@ export class ProductoFormMantenimientoComponent implements OnInit {
     titulo: string;
     parametro: string;
 
-    constructor(private productServices: ProductoServices, private categoriaServices: CategoriaService, private sActivatedR: ActivatedRoute) {
+    //Router sirve para obtener métodos para navegar
+
+    constructor(private productServices: ProductoServices, private categoriaServices: CategoriaService,
+        private sActivatedR: ActivatedRoute, private sRoute: Router) {
 
         this.producto = new FormGroup({
             'ProductId': new FormControl("0"),
-            'ProductName': new FormControl("", [Validators.required, Validators.maxLength(40)]),
+            'ProductName': new FormControl("", [Validators.required, Validators.maxLength(40)], this.validarNombre.bind(this)),
             'UnitPrice': new FormControl("0.00", [Validators.required]),
-            'UnitsInStock': new FormControl("0", [Validators.required]),
+            'UnitsInStock': new FormControl("0", [Validators.required, this.noPuntoDecimal]),
             'SupplierId': new FormControl("", [Validators.required]),
             'CategoryId': new FormControl("", [Validators.required]),
         });
@@ -56,6 +60,40 @@ export class ProductoFormMantenimientoComponent implements OnInit {
         }
     }
 
+    guardarDatos() {
+        if (this.producto.valid == true) {
+            this.productServices.registrarProducto(this.producto.value).subscribe(data => {
+                this.sRoute.navigate(["./mantenimiento-producto"])
+            });
+        }
+    }
 
+    noPuntoDecimal(control: FormControl) {
+        if (control.value != null && control.value != "") {
+            if ((<string>control.value.toString()).indexOf(".") > -1) {
+                // Es porque SI existe ---> indexOf(".")> -1
+                return { puntoDecimal: true }
+            }
+        }
+        return null;
+    }
+
+    validarNombre(control: FormControl) {
+        var promesa = new Promise((resolve, reject) => {
+            if (control.value != "" && control.value != null) {
+                this.productServices.validarNombre(
+                    this.producto.controls["ProductId"].value, this.producto.controls["ProductName"].value).
+                    subscribe(data => {
+                        if (data == 1) {
+                            resolve({ yaExiste: true });
+                        }
+                        else
+                            resolve(null);
+                    });
+            }
+        });
+
+        return promesa;
+    }
 
 }

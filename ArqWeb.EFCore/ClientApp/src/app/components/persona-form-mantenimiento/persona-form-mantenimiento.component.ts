@@ -85,5 +85,4 @@ export class PersonaFormMantenimientoComponent implements OnInit {
             //}
         }
     }
-
 }

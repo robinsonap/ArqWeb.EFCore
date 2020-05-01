@@ -10,16 +10,18 @@
   <!--Se abstrae variable donde se almacena resultado json
   y se define entidades en cada td-->
   <tbody>
-    <tr *ngFor="let prod of productos_item">
+    <tr *ngFor="let prod of productos_item | paginate: { itemsPerPage: 10, currentPage: p }">
       <td>{{prod.productId}}</td>
       <td>{{prod.productName}}</td>
       <td>{{prod.categoryId}}</td>
       <td>{{prod.categoryName}}</td>
       <td *ngIf="isMantenimiento==true">
         <i [routerLink]="['/producto-form-mantenimiento', prod.productId]" class="glyphicon glyphicon-edit btn btn-primary"></i>
-        <i class="glyphicon glyphicon-trash btn btn-danger"></i>
+        <i class="glyphicon glyphicon-trash btn btn-danger" (click)="eliminarProducto(prod.productId)"></i>
       </td>
     </tr>
   </tbody>
 
 </table>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

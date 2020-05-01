@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace BEntidad.BModels
 {
-    public partial class Tmusua
+    public class _Tmusua
     {
         public string CoUsua { get; set; }
         public string NoUsua { get; set; }
@@ -16,5 +17,6 @@ namespace BEntidad.BModels
         public DateTime FeUsuaCrea { get; set; }
         public string CoUsuaModi { get; set; }
         public DateTime FeUsuaModi { get; set; }
+        public string NoGrup { get; set; }
     }
 }
