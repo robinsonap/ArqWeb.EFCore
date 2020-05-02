@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BEntidad.BModels
+namespace BEntidad.BModels_Northwind
 {
     public partial class Tmusua
     {
@@ -16,5 +16,7 @@ namespace BEntidad.BModels
         public DateTime FeUsuaCrea { get; set; }
         public string CoUsuaModi { get; set; }
         public DateTime FeUsuaModi { get; set; }
+
+        public TmgrupUsua CoGrupNavigation { get; set; }
     }
 }

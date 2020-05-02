@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Router } from '@angular/router'
 
 @Injectable()
 
@@ -10,7 +11,7 @@ export class UsuarioService {
     urlFina: string;
 
     // Para capturar y obtener el dominio
-    constructor(private http: Http, @Inject("BASE_URL") url: string) {
+    constructor(private http: Http, @Inject("BASE_URL") url: string, private router: Router) {
         this.urlBase = url;
     }
 
@@ -74,4 +75,71 @@ export class UsuarioService {
         return this.http.get(this.urlFina).map(res => res.json())
     }
 
+    public login(sUsuarioLogin) {
+        this.urlFina = this.urlBase + "api/Usuario/login"
+        console.log(this.urlFina);
+
+        return this.http.post(this.urlFina, sUsuarioLogin).map(res => res.json())
+    }
+
+    public obtenerVariableSession() {
+        this.urlFina = this.urlBase + "api/Usuario/obtenerVariableSession"
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => {
+            var data = res.json();
+            var inf = data.sValor;
+
+            if (inf == "") {
+                this.router.navigate(["/pagina-error-login"])
+                return false;
+            }
+            else {
+                //// Hace match con la la variable next con el campo de URL de BD
+                //var pagina = next["url"][0].path;
+                //if (data.lista != null) {                
+                //var paginas = data.lista.map(data => pagina.accion);
+                //// indexOf -1 es si existe!!! 
+                //if (paginas.indexOf(pagina) > -1 && paginas != "Login") {
+                //    return true;
+                //}
+                //else {
+                //    this.router.navigate(["/pagina-error-permiso"]);
+                //}
+                //}
+                return true;
+            }
+        });
+    }
+
+    public obtenerSession() {
+        this.urlFina = this.urlBase + "api/Usuario/obtenerVariableSession"
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => {
+            var data = res.json();
+            var inf = data.sValor;
+
+            if (inf == "") {
+                return false;
+            }
+            else {
+                return true;
+            }
+        });
+    }
+
+    public cerrarSession() {
+        this.urlFina = this.urlBase + "api/Usuario/cerrarSession"
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
+    public listarPaginas() {
+        this.urlFina = this.urlBase + "api/Usuario/listarPaginas"
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
 }

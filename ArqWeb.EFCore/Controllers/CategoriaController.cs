@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BEntidad.BModels;
+using BEntidad.BModels_Northwind;
 
 namespace ArqWeb.EFCore.Controllers
 {
@@ -27,11 +28,11 @@ namespace ArqWeb.EFCore.Controllers
 
         [HttpGet]
         [Route("api/Categoria/FiltrarCategoriaPorNombre/{idCategoria}")]
-        public IEnumerable<Products> FiltrarCategoriaPorNombre(int idCategoria)
+        public IEnumerable<_Products> FiltrarCategoriaPorNombre(int idCategoria)
         {
             BLogica.BL.Categoria _Proc = new BLogica.BL.Categoria();
 
-            IEnumerable<Products> ProductoPorCategoria = _Proc.CategoriaPorNombre(idCategoria);
+            IEnumerable<_Products> ProductoPorCategoria = _Proc.CategoriaPorNombre(idCategoria);
 
             return ProductoPorCategoria;
 

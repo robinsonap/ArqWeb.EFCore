@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BEntidad.BModels;
+using BEntidad.BModels_Northwind;
 
 namespace ArqWeb.EFCore.Controllers
 {

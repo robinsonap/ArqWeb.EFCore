@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BEntidad.BModels
+namespace BEntidad.BModels_Northwind
 {
     public partial class Employees
     {
@@ -35,6 +35,5 @@ namespace BEntidad.BModels
         public ICollection<EmployeeTerritories> EmployeeTerritories { get; set; }
         public ICollection<Employees> InverseReportsToNavigation { get; set; }
         public ICollection<Orders> Orders { get; set; }
-
     }
 }

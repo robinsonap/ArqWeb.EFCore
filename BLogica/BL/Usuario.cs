@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using BEntidad.BModels;
+using BEntidad.BModels_Northwind;
 using System.Security.Cryptography;
 using System.Transactions;
+
 
 namespace BLogica.BL
 {
@@ -16,7 +18,7 @@ namespace BLogica.BL
             using (NorthwindContext _BD = new NorthwindContext())
             {
                 List<_Tmusua> _ListadoUsuarios = (from t1 in _BD.Tmusua
-                                                  join t2 in _BD.Tmgrup_usua 
+                                                  join t2 in _BD.TmgrupUsua
                                                   on t1.CoGrup equals t2.Co_grup
                                                   select new _Tmusua
                                                   { 
@@ -29,13 +31,13 @@ namespace BLogica.BL
             }
         }
 
-        public IEnumerable<Tmgrup_usua> ListarTipoUsuario()
+        public IEnumerable<TmgrupUsua> ListarTipoUsuario()
         {
             using (NorthwindContext _BD = new NorthwindContext())
             {
-                List<Tmgrup_usua> _ListarTipo = (from t1 in _BD.Tmgrup_usua
-                                                 select new Tmgrup_usua
-                                                 {
+                List<TmgrupUsua> _ListarTipo = (from t1 in _BD.TmgrupUsua
+                                                select new TmgrupUsua
+                                                {
                                                      Co_grup = t1.Co_grup,
                                                      No_grup = t1.No_grup
                                                  }).ToList();
@@ -48,7 +50,7 @@ namespace BLogica.BL
             using (NorthwindContext _BD = new NorthwindContext())
             {
                 List<_Tmusua> _ListadoUsuarios = (from t1 in _BD.Tmusua
-                                                 join t2 in _BD.Tmgrup_usua
+                                                 join t2 in _BD.TmgrupUsua
                                                  on t1.CoGrup equals t2.Co_grup
                                                  where t1.CoGrup == co_grupo
                                                  select new _Tmusua
@@ -99,7 +101,7 @@ namespace BLogica.BL
                             m.CoUsuaModi = "DBA01";
                             m.StActi = "ACT";
                             //Para cifrar contraseña
-                            SHA256Managed sha = new SHA256Managed();
+                            //SHA256Managed sha = new SHA256Managed();
                             //byte[] dataNoCifrada = Encoding.Default.GetBytes(m.NoClav);
                             //byte[] dataCifafrada = sha.ComputeHash(dataNoCifrada);
                             //string claveCifrada = BitConverter.ToString(dataCifafrada).Replace("-", "");
@@ -185,6 +187,65 @@ namespace BLogica.BL
                 return sVALIDA;
             }
         }
+
+        public Tmusua login(Tmusua m)
+        {
+            int sLOGIN = 0;
+
+            using (NorthwindContext _BD = new NorthwindContext())
+            {
+                //Para cifrar contraseña
+                //SHA256Managed sha = new SHA256Managed();
+                //byte[] dataNoCifrada = Encoding.Default.GetBytes(sPassword);
+                //byte[] dataCifafrada = sha.ComputeHash(dataNoCifrada);
+                //string claveCifrada = BitConverter.ToString(dataCifafrada).Replace("-", "");
+                //m.NoClav = claveCifrada;
+
+                Tmusua sUsuario_res = new Tmusua();
+
+                sLOGIN = _BD.Tmusua.Where(p => p.CoUsua.ToLower() == m.CoUsua.ToLower() && p.NoClav.ToLower() == m.NoClav.ToLower()).Count();
+
+                if (sLOGIN >= 1)
+                {
+                    sUsuario_res = _BD.Tmusua.Where(p => p.CoUsua.ToLower() == m.CoUsua.ToLower() && p.NoClav.ToLower() == m.NoClav.ToLower()).First();
+                }
+                else
+                {
+                    sUsuario_res.CoUsua = "";
+                    sUsuario_res.CoGrup = "";
+                }
+                return sUsuario_res;
+            }
+        }
+
+        public List<Pagina> listarPaginas(string grupoUsuario)
+        {
+            using (NorthwindContext _BD = new NorthwindContext())
+            {
+                try
+                {
+                    List<Pagina> lsPagina = (from t1 in _BD.PaginaGrupoUsuario
+                                             join t2 in _BD.Pagina
+                                             on t1.IdPagina equals t2.IdPagina
+                                             where t1.CoGrup.ToLower() == grupoUsuario.ToLower()
+                                             select new Pagina
+                                             {
+                                                 IdPagina = t2.IdPagina,
+                                                 Mensaje = t2.Mensaje,
+                                                 Accion = t2.Accion,
+                                             }).Distinct().ToList();
+                    return lsPagina;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                
+            }               
+        }
+
+
 
     }
 }

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BEntidad.BModels
+namespace BEntidad.BModels_Northwind
 {
     public partial class Products
     {
-        public string CategoryName;
-
         public Products()
         {
             OrderDetails = new HashSet<OrderDetails>();

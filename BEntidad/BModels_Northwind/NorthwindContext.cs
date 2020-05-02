@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BEntidad.BModels
+namespace BEntidad.BModels_Northwind
 {
     public partial class NorthwindContext : DbContext
     {
@@ -23,21 +23,22 @@ namespace BEntidad.BModels
         public virtual DbSet<EmployeeTerritories> EmployeeTerritories { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Pagina> Pagina { get; set; }
+        public virtual DbSet<PaginaGrupoUsuario> PaginaGrupoUsuario { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<Shippers> Shippers { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<Territories> Territories { get; set; }
+        public virtual DbSet<TmgrupUsua> TmgrupUsua { get; set; }
         public virtual DbSet<Tmusua> Tmusua { get; set; }
-
-        public virtual DbSet<Tmgrup_usua> Tmgrup_usua { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=Northwind; Integrated Security=true");
+                optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=Northwind;Integrated Security=true");
             }
         }
 
@@ -323,6 +324,40 @@ namespace BEntidad.BModels
                     .HasConstraintName("FK_Orders_Shippers");
             });
 
+            modelBuilder.Entity<Pagina>(entity =>
+            {
+                entity.HasKey(e => e.IdPagina);
+
+                entity.Property(e => e.IdPagina).HasColumnName("idPagina");
+
+                entity.Property(e => e.Accion)
+                    .IsRequired()
+                    .HasColumnName("accion")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Mensaje)
+                    .IsRequired()
+                    .HasColumnName("mensaje")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PaginaGrupoUsuario>(entity =>
+            {
+                entity.HasKey(e => e.IdPaginaGrupoUsuario);
+
+                entity.Property(e => e.IdPaginaGrupoUsuario).HasColumnName("idPaginaGrupoUsuario");
+
+                entity.Property(e => e.CoGrup)
+                    .IsRequired()
+                    .HasColumnName("co_grup")
+                    .HasMaxLength(8)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IdPagina).HasColumnName("idPagina");
+            });
+
             modelBuilder.Entity<Products>(entity =>
             {
                 entity.HasKey(e => e.ProductId);
@@ -456,6 +491,24 @@ namespace BEntidad.BModels
                     .HasConstraintName("FK_Territories_Region");
             });
 
+            modelBuilder.Entity<TmgrupUsua>(entity =>
+            {
+                entity.HasKey(e => e.Co_grup);
+
+                entity.ToTable("Tmgrup_usua");
+
+                entity.Property(e => e.Co_grup)
+                    .HasColumnName("Co_grup")
+                    .HasMaxLength(8)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.No_grup)
+                    .IsRequired()
+                    .HasColumnName("No_grup")
+                    .HasMaxLength(50);
+            });
+
             modelBuilder.Entity<Tmusua>(entity =>
             {
                 entity.HasKey(e => e.CoUsua);
@@ -522,22 +575,11 @@ namespace BEntidad.BModels
                     .HasColumnName("ST_ACTI")
                     .HasMaxLength(3)
                     .IsUnicode(false);
-            });
 
-            modelBuilder.Entity<Tmgrup_usua>(entity =>
-            {
-                entity.HasKey(e => e.Co_grup);
-
-                entity.Property(e => e.Co_grup)
-                    .HasColumnName("CO_GRUP")
-                    .HasMaxLength(8)
-                    .IsUnicode(false)
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.No_grup)
-                    .HasColumnName("NO_GRUP")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.HasOne(d => d.CoGrupNavigation)
+                    .WithMany(p => p.Tmusua)
+                    .HasForeignKey(d => d.CoGrup)
+                    .HasConstraintName("FK_Tmusua_Tmgrup_usua");
             });
         }
     }

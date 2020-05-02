@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using BEntidad.BModels;
+using BEntidad.BModels_Northwind;
 
 namespace BLogica.BL
 {
     public class Producto
     {
-        public IEnumerable<Products> ListarProductos()
+        public IEnumerable<_Products> ListarProductos()
         {
             using (NorthwindContext _DB = new NorthwindContext())
             {
-                IEnumerable<Products> Lista = (from t1 in _DB.Products
+                IEnumerable<_Products> Lista = (from t1 in _DB.Products
                                         join t2 in _DB.Categories
                                         on t1.CategoryId equals t2.CategoryId
-                                        select new Products
+                                        select new _Products
                                         { 
                                         ProductId = t1.ProductId,
                                         ProductName = t1.ProductName,
@@ -27,15 +28,15 @@ namespace BLogica.BL
             }
         }
 
-        public IEnumerable<Products> FiltrarProductoPorNombre(string dNombre)
+        public IEnumerable<_Products> FiltrarProductoPorNombre(string dNombre)
         {
             using (NorthwindContext _DB = new NorthwindContext())
             {
-                IEnumerable<Products> Lista = (from t1 in _DB.Products
+                IEnumerable<_Products> Lista = (from t1 in _DB.Products
                                         join t2 in _DB.Categories
                                         on t1.CategoryId equals t2.CategoryId
                                         where t1.ProductName.Contains(dNombre)
-                                        select new Products
+                                        select new _Products
                                         {
                                             ProductId = t1.ProductId,
                                             ProductName = t1.ProductName,

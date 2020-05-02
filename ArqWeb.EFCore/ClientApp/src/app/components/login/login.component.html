@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="usuario" (ngSubmit)="login()">
+      <h1>Login</h1>
+      <div class="form-group">
+        <label>Ingrese usuario</label>
+        <input type="text" class="form-control" formControlName="CoUsua" />
+        <div style="color:red" *ngIf="usuario.controls['CoUsua'].errors?.required">
+          Ingresar el código de usuario.
+        </div>
+        <div style="color:red" *ngIf="usuario.controls['CoUsua'].errors?.maxlength">
+          Superó la longitud máxima.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Ingrese contraseña</label>
+        <input type="password" class="form-control" formControlName="NoClav" />
+        <div style="color:red" *ngIf="usuario.controls['NoClav'].errors?.required">
+          El contraseña es requerida.
+        </div>
+        <div style="color:red" *ngIf="usuario.controls['NoClav'].errors?.maxlength">
+          Superó la longitud máxima.
+        </div>
+      </div>
+
+      <div>
+        <input type="submit" [disabled]="!usuario.valid" value="Ingresar" class="btn btn-primary"/>
+        <input type="button" value="Salir" class="btn btn-danger"/>
+      </div>
+    </form>
+
+    <div style="color:red" *ngIf="error==true">
+      Usuario o contraseña incorrecto.
+    </div>
+  </div>
+</div>

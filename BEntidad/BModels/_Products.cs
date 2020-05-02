@@ -16,5 +16,6 @@ namespace BEntidad.BModels
         public short? UnitsOnOrder { get; set; }
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
+        public string CategoryName { get; set; }
     }
 }

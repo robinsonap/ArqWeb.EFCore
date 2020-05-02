@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BEntidad.BModels;
+using BEntidad.BModels_Northwind;
 
 namespace ArqWeb.EFCore.Controllers
 {
@@ -16,13 +17,13 @@ namespace ArqWeb.EFCore.Controllers
 
         [HttpGet]
         [Route("api/Producto/ListarProductos")]
-        public IEnumerable<Products> ListarProductos()
+        public IEnumerable<_Products> ListarProductos()
         {
             try
             {
                 BLogica.BL.Producto _Proc = new BLogica.BL.Producto();
 
-                IEnumerable<Products> ResuList = _Proc.ListarProductos();
+                IEnumerable<_Products> ResuList = _Proc.ListarProductos();
 
                 return ResuList;
             }
@@ -35,13 +36,13 @@ namespace ArqWeb.EFCore.Controllers
 
         [HttpGet]
         [Route("api/Producto/FiltrarProductoPorNombre/{dNombre}")]
-        public IEnumerable<Products> FiltrarProductoPorNombre(string dNombre)
+        public IEnumerable<_Products> FiltrarProductoPorNombre(string dNombre)
         {
             try
             {
                 BLogica.BL.Producto _Proc = new BLogica.BL.Producto();
 
-                IEnumerable<Products> ResuList = _Proc.FiltrarProductoPorNombre(dNombre);
+                IEnumerable<_Products> ResuList = _Proc.FiltrarProductoPorNombre(dNombre);
 
                 return ResuList;
             }

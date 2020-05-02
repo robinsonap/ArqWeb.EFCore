@@ -37,7 +37,14 @@ import { ProductoFormMantenimientoComponent } from './components/producto-form-m
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MantenimientoUsuarioComponent } from './components/mantenimiento-usuario/mantenimiento-usuario.component';
-import { UsuarioFormMantenimientoComponent } from './components/usuario-form-mantenimiento/usuario-form-mantenimiento.component'
+import { UsuarioFormMantenimientoComponent } from './components/usuario-form-mantenimiento/usuario-form-mantenimiento.component';
+import { LoginComponent } from './components/login/login.component';
+import { PaginaErrorLoginComponent } from './components/pagina-error-login/pagina-error-login.component';
+import { PermisoErrorPaginaComponent } from './components/permiso-error-pagina/permiso-error-pagina.component';
+
+//Guards
+import { SeguridadGuard } from './components/guards/seguridad.guard';
+import { ComponenteBienvenidoComponent } from './components/componente-bienvenido/componente-bienvenido.component'
 
 @NgModule({
     declarations: [
@@ -63,6 +70,10 @@ import { UsuarioFormMantenimientoComponent } from './components/usuario-form-man
         ProductoFormMantenimientoComponent,
         MantenimientoUsuarioComponent,
         UsuarioFormMantenimientoComponent,
+        LoginComponent,
+        PaginaErrorLoginComponent,
+        PermisoErrorPaginaComponent,
+        ComponenteBienvenidoComponent,
     ],
     imports: [
         HttpModule,
@@ -72,19 +83,23 @@ import { UsuarioFormMantenimientoComponent } from './components/usuario-form-man
         ReactiveFormsModule,
         NgxPaginationModule,
         RouterModule.forRoot([
-            { path: 'filtradoProductoCategoria', component: FiltradoProductoCagetoriaComponent, pathMatch: 'full' },
-            { path: 'filtradoProductoNombre', component: FiltradoProductoNombreComponent },
-            { path: 'filtradoPersonaNombreCompleto', component: FiltradoPersonaNombreCompletoComponent },
-            { path: 'filtradoUsuarioPorTipo', component: FiltradoUsuarioTipoUsuarioComponent },
+            { path: 'filtradoProductoCategoria', component: FiltradoProductoCagetoriaComponent, pathMatch: 'full', canActivate: [SeguridadGuard] },
+            { path: 'filtradoProductoNombre', component: FiltradoProductoNombreComponent, canActivate: [SeguridadGuard] },
+            { path: 'filtradoPersonaNombreCompleto', component: FiltradoPersonaNombreCompletoComponent, canActivate: [SeguridadGuard] },
+            { path: 'filtradoUsuarioPorTipo', component: FiltradoUsuarioTipoUsuarioComponent, canActivate: [SeguridadGuard] },
             { path: 'mantenimiento-persona', component: MantenimientoPersonaComponent },
             { path: 'persona-form-mantenimiento/:id', component: PersonaFormMantenimientoComponent },
             { path: 'mantenimiento-producto', component: MantenimientoProductoComponent },
             { path: 'producto-form-mantenimiento/:id', component: ProductoFormMantenimientoComponent },
             { path: 'mantenimiento-usuario', component: MantenimientoUsuarioComponent },
             { path: 'usuario-form-mantenimiento/:id', component: UsuarioFormMantenimientoComponent },
+            { path: 'login', component: LoginComponent },
+            { path: 'pagina-error-login', component: PaginaErrorLoginComponent },
+            { path: 'pagina-error-permiso', component: PermisoErrorPaginaComponent },
+            { path: 'componente-bienvenida', component: ComponenteBienvenidoComponent },
         ])
     ],
-    providers: [ProductoServices, CategoriaService, PersonaService, UsuarioService],
+    providers: [ProductoServices, CategoriaService, PersonaService, UsuarioService, SeguridadGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
