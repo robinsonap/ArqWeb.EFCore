@@ -1,0 +1,47 @@
+<h1>{{titulo}}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="paginas" (ngSubmit)="guardarDatos()">
+      <div class="form-group">
+        <label>Id Pagina</label>
+        <input type="number" class="form-control" readonly formControlName="IdPagina" />
+      </div>
+
+      <div class="form-group">
+        <label>Mensaje</label>
+        <input type="text" class="form-control" formControlName="Mensaje" />
+        <div style="color:red" *ngIf="paginas.controls['Mensaje'].errors?.required">
+          Debe ingresar los apellidos.
+        </div>
+        <div style="color:red" *ngIf="paginas.controls['Mensaje'].errors?.maxlength">
+          Superó la longitud máxima.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Accion</label>
+        <input type="text" class="form-control" formControlName="Accion" />
+        <div style="color:red" *ngIf="paginas.controls['Accion'].errors?.required">
+          Debe ingresar los nombres.
+        </div>
+        <div style="color:red" *ngIf="paginas.controls['Accion'].errors?.maxlength">
+          Superó la longitud máxima.
+        </div>
+      </div>
+
+      <div>
+        <input [disabled]="!paginas.valid" type="submit" value="Guardar" class="btn btn-primary" />
+        <button [routerLink]="['/mantenimiento-pagina']" class="btn btn-danger">Regresar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<hr />
+
+<div style="margin:1em" *ngIf="paginas.valid==false">
+  <div class="alert alert-danger">El formulario no es válido, por favor verificar los datos.</div>
+</div>
+
+<!--{{fPaginas.valid}}-->

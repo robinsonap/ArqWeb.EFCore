@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
     login() {
         if (this.usuario.valid == true) {
             this.usuarioService.login(this.usuario.value).subscribe(data => {
-                if (data.CoUsua == "") {
+                //console.log(data.coUsua);
+                if (data.coUsua == "") {
                     //Error
                     this.error = true;
                 }

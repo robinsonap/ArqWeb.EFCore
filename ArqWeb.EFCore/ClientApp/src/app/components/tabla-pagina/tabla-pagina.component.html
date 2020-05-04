@@ -1,0 +1,27 @@
+
+<table class="table">
+
+  <thead class="thead-dark">
+    <tr>
+      <th *ngFor="let cabe of cabeceras">{{cabe}}</th>
+      <th *ngIf="isMantenimiento==true">Operaciones</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let jsnPaginas of JsonPaginas | paginate: { itemsPerPage: 3, currentPage: p }">
+      <td>{{jsnPaginas.idPagina}}</td>
+      <td>{{jsnPaginas.mensaje}}</td>
+      <td>{{jsnPaginas.accion}}</td>
+      <td *ngIf="isMantenimiento==true">
+        <i [routerLink]="['/pagina-form-mantenimiento', jsnPaginas.idPagina]" class="glyphicon glyphicon-edit btn btn-primary"></i>
+        <i class="glyphicon glyphicon-trash btn btn-danger" (click)="eliminar(jsnPaginas.idPagina)"></i>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

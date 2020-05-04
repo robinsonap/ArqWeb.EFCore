@@ -44,7 +44,15 @@ import { PermisoErrorPaginaComponent } from './components/permiso-error-pagina/p
 
 //Guards
 import { SeguridadGuard } from './components/guards/seguridad.guard';
-import { ComponenteBienvenidoComponent } from './components/componente-bienvenido/componente-bienvenido.component'
+import { ComponenteBienvenidoComponent } from './components/componente-bienvenido/componente-bienvenido.component';
+import { MantenimientoGrupoUsuarioComponent } from './components/mantenimiento-grupo-usuario/mantenimiento-grupo-usuario.component';
+import { GrupoUsuarioFormMantenimientoComponent } from './components/grupo-usuario-form-mantenimiento/grupo-usuario-form-mantenimiento.component';
+import { TablaGrupoUsuarioComponent } from './components/tabla-grupo-usuario/tabla-grupo-usuario.component';
+import { TablaPaginaComponent } from './components/tabla-pagina/tabla-pagina.component';
+import { MantenimientoPaginaComponent } from './components/mantenimiento-pagina/mantenimiento-pagina.component';
+import { PaginaFormMantenimientoComponent } from './components/pagina-form-mantenimiento/pagina-form-mantenimiento.component';
+import { NoEncontroInformacionComponent } from './components/no-encontro-informacion/no-encontro-informacion.component'
+import { PaginasService } from './services/paginas.service';
 
 @NgModule({
     declarations: [
@@ -74,6 +82,13 @@ import { ComponenteBienvenidoComponent } from './components/componente-bienvenid
         PaginaErrorLoginComponent,
         PermisoErrorPaginaComponent,
         ComponenteBienvenidoComponent,
+        MantenimientoGrupoUsuarioComponent,
+        GrupoUsuarioFormMantenimientoComponent,
+        TablaGrupoUsuarioComponent,
+        TablaPaginaComponent,
+        MantenimientoPaginaComponent,
+        PaginaFormMantenimientoComponent,
+        NoEncontroInformacionComponent,
     ],
     imports: [
         HttpModule,
@@ -97,9 +112,13 @@ import { ComponenteBienvenidoComponent } from './components/componente-bienvenid
             { path: 'pagina-error-login', component: PaginaErrorLoginComponent },
             { path: 'pagina-error-permiso', component: PermisoErrorPaginaComponent },
             { path: 'componente-bienvenida', component: ComponenteBienvenidoComponent },
+            { path: 'mantenimiento-grupo-usuario', component: MantenimientoGrupoUsuarioComponent },
+            { path: 'grupo-usuario-form-mantenimiento/:id', component: GrupoUsuarioFormMantenimientoComponent },
+            { path: 'mantenimiento-pagina', component: MantenimientoPaginaComponent },
+            { path: 'pagina-form-mantenimiento/:id', component: PaginaFormMantenimientoComponent },
         ])
     ],
-    providers: [ProductoServices, CategoriaService, PersonaService, UsuarioService, SeguridadGuard],
+    providers: [ProductoServices, CategoriaService, PersonaService, UsuarioService, SeguridadGuard, PaginasService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

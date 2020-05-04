@@ -242,8 +242,8 @@ namespace ArqWeb.EFCore.Controllers
         }
 
         [HttpGet]
-        [Route("api/Usuario/listarPaginas")]
-        public List<Pagina> listarPaginas()
+        [Route("api/Usuario/listarPaginasPorUsua")]
+        public List<Pagina> listarPaginasPorUsua()
         {
             try
             {

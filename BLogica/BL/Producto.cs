@@ -76,7 +76,8 @@ namespace BLogica.BL
                                       UnitPrice = t1.UnitPrice,
                                       SupplierId = t1.SupplierId,
                                       CategoryId = t1.CategoryId,
-                                      UnitsInStock = t1.UnitsInStock
+                                      UnitsInStock = t1.UnitsInStock,
+                                      Foto = t1.Foto,
                                       }).First();
 
                 return sProducto;
@@ -107,6 +108,7 @@ namespace BLogica.BL
                         sProductos.SupplierId = m.SupplierId;
                         sProductos.CategoryId = m.CategoryId;
                         sProductos.UnitsInStock = m.UnitsInStock;
+                        sProductos.Foto = m.Foto;
                         _BD.SaveChanges();
 
                         sINSERT = 1;

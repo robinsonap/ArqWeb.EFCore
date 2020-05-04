@@ -17,6 +17,7 @@ export class ProductoFormMantenimientoComponent implements OnInit {
     categoria: any;
     titulo: string;
     parametro: string;
+    foto: any;
 
     //Router sirve para obtener métodos para navegar
 
@@ -30,6 +31,7 @@ export class ProductoFormMantenimientoComponent implements OnInit {
             'UnitsInStock': new FormControl("0", [Validators.required, this.noPuntoDecimal]),
             'SupplierId': new FormControl("", [Validators.required]),
             'CategoryId': new FormControl("", [Validators.required]),
+            'foto': new FormControl(""),
         });
 
         this.sActivatedR.params.subscribe(parametro => {
@@ -50,18 +52,29 @@ export class ProductoFormMantenimientoComponent implements OnInit {
 
         if (this.parametro != "nuevo") {
             this.productServices.obtenerProductoPorId(this.parametro).subscribe(data => {
+
                 this.producto.controls["ProductId"].setValue(data.productId);
                 this.producto.controls["ProductName"].setValue(data.productName);
                 this.producto.controls["UnitPrice"].setValue(data.unitPrice);
                 this.producto.controls["SupplierId"].setValue(data.supplierId);
                 this.producto.controls["CategoryId"].setValue(data.categoryId);
                 this.producto.controls["UnitsInStock"].setValue(data.unitsInStock);
+
+                if (data.foto == null) {
+                    this.foto = "";
+                }
+                else {
+                    this.foto = data.foto;
+                }
+                
             });
         }
     }
 
     guardarDatos() {
         if (this.producto.valid == true) {
+
+            this.producto.controls["foto"].setValue(this.foto);
             this.productServices.registrarProducto(this.producto.value).subscribe(data => {
                 this.sRoute.navigate(["./mantenimiento-producto"])
             });
@@ -94,6 +107,19 @@ export class ProductoFormMantenimientoComponent implements OnInit {
         });
 
         return promesa;
+    }
+
+    changeFoto() {
+        // Para que reconozca que es un elemento HTML (por defecto el document.getElementById puede tener problemas)
+        var file = (<HTMLInputElement>document.getElementById("fupFoto")).files[0];
+        var fileReader = new FileReader();
+        
+        fileReader.onloadend = () => {
+            //Saca el archivo como bit 64
+            this.foto = fileReader.result;
+        }
+
+        fileReader.readAsDataURL(file);
     }
 
 }

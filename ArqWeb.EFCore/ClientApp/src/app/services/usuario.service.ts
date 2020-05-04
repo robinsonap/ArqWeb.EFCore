@@ -137,7 +137,42 @@ export class UsuarioService {
     }
 
     public listarPaginas() {
-        this.urlFina = this.urlBase + "api/Usuario/listarPaginas"
+        this.urlFina = this.urlBase + "api/Usuario/listarPaginasPorUsua"
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
+    public listarGrupoUsuario() {
+        this.urlFina = this.urlBase + "api/GrupoUsuario/listarGrupoUsuario"
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
+    public listarPaginasGrupoUsuario() {
+        this.urlFina = this.urlBase + "api/GrupoUsuario/listarPaginasGrupoUsuario"
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
+    public listarPaginasRecuperar(coGrupoUsua) {
+        this.urlFina = this.urlBase + "api/GrupoUsuario/listarPaginasRecuperar/" + coGrupoUsua
+        console.log(this.urlFina);
+
+        return this.http.get(this.urlFina).map(res => res.json())
+    }
+
+    public guardarDatosGrupoUsuario(sFormTipoUsuario) {
+        this.urlFina = this.urlBase + "api/GrupoUsuario/guardarDatosGrupoUsuario"
+        console.log(this.urlFina);
+
+        return this.http.post(this.urlFina, sFormTipoUsuario).map(res => res.json())
+    }
+
+    public eliminarGrupoUsuario(codGrupoUsuario) {
+        this.urlFina = this.urlBase + "api/GrupoUsuario/eliminarGrupoUsuario/" + codGrupoUsuario
         console.log(this.urlFina);
 
         return this.http.get(this.urlFina).map(res => res.json())

@@ -12,7 +12,6 @@ namespace BLogica.BL
 {
     public class Usuario
     {
-
         public IEnumerable<_Tmusua> ListarUsua()
         {
             using (NorthwindContext _BD = new NorthwindContext())

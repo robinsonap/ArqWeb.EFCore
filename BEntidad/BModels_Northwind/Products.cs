@@ -20,6 +20,7 @@ namespace BEntidad.BModels_Northwind
         public short? UnitsOnOrder { get; set; }
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
+        public string Foto { get; set; }
 
         public Categories Category { get; set; }
         public Suppliers Supplier { get; set; }

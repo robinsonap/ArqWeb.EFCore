@@ -375,6 +375,10 @@ namespace BEntidad.BModels_Northwind
 
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
+                entity.Property(e => e.Foto)
+                    .HasColumnName("foto")
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ProductName)
                     .IsRequired()
                     .HasMaxLength(40);

@@ -1,0 +1,54 @@
+
+<h1>{{titulo}}</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="grupoUsuario" (ngSubmit)="guardarDatos()">
+
+      <div class="form-group">
+        <label>Cod. Grupo Usuario</label>
+        <input type="text" class="form-control" formControlName="Co_grup" />
+        <div style="color:red" *ngIf="grupoUsuario.controls['Co_grup'].errors?.required">
+          Debe ingresar código de grupo usuario.
+        </div>
+        <div style="color:red" *ngIf="grupoUsuario.controls['Co_grup'].errors?.maxlength">
+          Superó la longitud máxima.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Nombre grupo usuario</label>
+        <input type="text" class="form-control" formControlName="No_grup" />
+        <!--<input type="text" class="form-control" formControlName="Valores" />-->
+        <div style="color:red" *ngIf="grupoUsuario.controls['No_grup'].errors?.required">
+          Debe ingresar nombre de grupo usuario.
+        </div>
+        <div style="color:red" *ngIf="grupoUsuario.controls['No_grup'].errors?.maxlength">
+          Superó la longitud máxima.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Seleccione las páginas</label>
+        <div *ngFor="let pag of paginas">
+          <input type="checkbox" class="check" [name]="pag.idPagina" (change)="verCheck()"/>
+          <label>{{pag.mensaje}}</label>
+        </div>
+      </div>
+
+      <div>
+        <input [disabled]="!grupoUsuario.valid" type="submit" value="Enviar" class="btn btn-primary" />
+        <input type="button" [routerLink]="['/mantenimiento-grupo-usuario']" value="Regresar" class="btn btn-danger" />
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<hr />
+
+<div style="margin:1em" *ngIf="grupoUsuario.valid==false">
+  <div class="alert alert-danger">El formulario no es válido, por favor verificar los datos.</div>
+</div>
+
+<!--{{empleado.valid}}-->

@@ -1,0 +1,28 @@
+
+<table class="table">
+
+  <thead class="thead-dark">
+
+    <tr>
+      <th *ngFor="let cabe of cabeceras">{{cabe}}</th>
+      <th *ngIf="isMantenimiento==true">Operaciones</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let gUsuario of grupoUsuario | paginate: { itemsPerPage: 5, currentPage: p }">
+      <td>{{gUsuario.co_grup}}</td>
+      <td>{{gUsuario.no_grup}}</td>
+      <td *ngIf="isMantenimiento==true">
+        <i [routerLink]="['/grupo-usuario-form-mantenimiento', gUsuario.co_grup]" class="glyphicon glyphicon-edit btn btn-primary"></i>
+        <i class="glyphicon glyphicon-trash btn btn-danger" (click)="eliminar(gUsuario.co_grup)"></i>
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
